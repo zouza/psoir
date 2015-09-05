@@ -1,3 +1,15 @@
+<project name="s3upload" default="run" basedir=".">
+    <path id="aws.java.sdk.classpath">
+        <fileset dir="../../third-party" includes="**/*.jar"/>
+        <fileset dir="../../lib" includes="**/*.jar"/>
+        <pathelement location="."/>
+    </path>
+
+    <target name="run">
+        <javac srcdir="." destdir="." classpathref="aws.java.sdk.classpath"/>
+        <java classname="upload" classpathref="aws.java.sdk.classpath" fork="true"/>
+    </target>
+</project>
 <project name="ec2ImageProcessing" default="run" basedir=".">
     <path id="aws.java.sdk.classpath">
         <fileset dir="../../third-party" includes="**/*.jar"/>
