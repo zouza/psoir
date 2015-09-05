@@ -1,0 +1,68 @@
+body {
+	margin: 0;
+	padding: 0;
+	font: 12px;
+	color: white;
+	overflow-y: scroll;
+	background-color: black;
+}
+
+div#content {
+	margin: 30px auto;
+	padding: 0 30px 15px 30px;
+	width: 940px;
+}
+
+div#content div.section ul {
+	margin: 0;
+	padding: 1em 0 0 2em;
+	overflow: hidden;
+}
+
+div#content div.section ul li {
+	list-style-type: square;
+	white-space: nowrap;
+	line-height: 1.5em;
+}
+
+.container {
+	zoom: 1;
+}
+
+#inp {
+	width:300px;
+}
+
+
+.container:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.img {
+	margin: 5px;
+}
+
+a{
+	color: white;
+}
+
+input{
+	width:300px;
+	height:26px;
+	margin-left:500px;
+	margin-bottom:2px;
+}
+
+input[type='submit']{
+	background: green;
+	color:white;
+	width:300px;
+	height:40px;
+	margin-left:500px;
+}
+
+.gallery { float: left; width: 1020px;}
