@@ -14,7 +14,7 @@
     classpathref="aws.java.sdk.classpath"/>
   </target>
 
-  <target name="run" depends="build">
+  <target name="test" depends="build">
     <java classname="upload" classpathref="aws.java.sdk.classpath" fork="true"/>
   </target>
 </project>
