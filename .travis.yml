@@ -1,7 +1,7 @@
 language: java
 install: ant deps
 jdk:
-  - openjdk8
+  - openjdk7
 deploy:
     provider: s3
     access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
