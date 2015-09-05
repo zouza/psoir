@@ -1,6 +1,6 @@
 <project name="s3 Upload" default="run" basedir=".">
   <path id="aws.java.sdk.classpath">
-    <fileset dir="./lib" includes="**/*.jar"/>
+    <fileset dir="./s3upload/WebContent/WEB-INF/lib" includes="**/*.jar"/>
     <fileset dir="./third-party" includes="**/*.jar"/>
     <pathelement location="lib"/>
     <pathelement location="."/>
