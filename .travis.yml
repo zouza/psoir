@@ -4,7 +4,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
     secret_access_key: $AWS_SECRET_KEY
     bucket: aws.ajan
-    endpoint: aws.ajan.s3-website-us-west-2.amazonaws.com
+    endpoint: http://aws.ajan.s3-website-us-west-2.amazonaws.com
     region: us-west-1 
     skip_cleanup: true
     acl: public_read
