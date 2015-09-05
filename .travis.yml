@@ -1,5 +1,5 @@
 language: java
-install: ant deps
+install: ant test
 deploy:
     provider: s3
     access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
