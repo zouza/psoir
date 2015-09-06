@@ -9,7 +9,7 @@
   <property name="app.name"      value="s3upload"/>
   <property name="work.home"    value="${basedir}/work"/>
   <property name="dist.home"     value="${basedir}/dist"/>
-  <property name="src.home"      value="${basedir}/src"/>
+  <property name="src.home"      value="${basedir}/s3upload/src"/>
   <property name="web.home"      value="${basedir}"/>
 
   <target name="all" depends="clean,compile,dist"
