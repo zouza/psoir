@@ -49,7 +49,7 @@
          basedir="${work.home}"/>
   </target>
   
-  <target name="build" depends="compile"">
+  <target name="build" depends="compile">
   <javac debug="true"
     includeantruntime="false"
     srcdir="."
