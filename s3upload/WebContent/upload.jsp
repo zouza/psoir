@@ -25,7 +25,7 @@
 			id += ".jpg";
 			session.setAttribute("img", "img"+id);
 	%>
-    <form action="https://aws.ajan.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+    <form action="https://aws.ajan2.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
       <input type="hidden" name="key" value="img<%=id %>">
       <input type="hidden" name="AWSAccessKeyId" value="*****"> 
       <input type="hidden" name="acl" value="public-read"> 
