@@ -1,4 +1,5 @@
-<project name="s3 Upload" default="run" basedir1="./s3upload" basedir2="./ec2ImageProcessing">
+<projects>
+<project name="s3 Upload" default="run" basedir="./s3upload">
   <path id="aws.java.sdk.classpath">
     <fileset dir="./s3upload/WebContent/WEB-INF/lib" includes="**/*.jar"/>
     <pathelement location="lib"/>
@@ -6,60 +7,96 @@
   </path>
 
   <!-- Define the properties used by the build -->
-  <property name="app1.name"      value="s3upload"/>
-  <property name="app2.name"      value="ec2ImageProcessing"/>
-  <property name="work1.home"    value="${basedir1}/work"/>
-  <property name="work2.home"    value="${basedir2}/work"/> 
-  <property name="dist1.home"     value="${basedir1}/dist"/>
-  <property name="dist2.home"     value="${basedir2}/dist"/>
-  <property name="src1.home"      value="${basedir1}/src"/>
-  <property name="src2.home"      value="${basedir2}/src"/>
-  <property name="web1.home"      value="${basedir1}"/>
-  <property name="web2.home"      value="${basedir2}"/>
+  <property name="app.name"      value="s3upload"/>
+  <property name="work.home"    value="${basedir}/work"/>
+  <property name="dist.home"     value="${basedir}/dist"/>
+  <property name="src.home"      value="${basedir}/src"/>
+  <property name="web.home"      value="${basedir}"/>
 
   <target name="all" depends="clean,compile,dist"
           description="Clean work dirs, then compile and create a WAR"/>
 
   <target name="clean"
           description="Delete old work and dist directories">
-    <delete dir="${work1.home}"/>
-    <delete dir="${dist1.home}"/>
-	<delete dir="${work2.home}"/>
-    <delete dir="${dist2.home}"/>
+    <delete dir="${work.home}"/>
+    <delete dir="${dist.home}"/>
   </target>
 
   <target name="prepare" depends="clean"
           description="Create working dirs and copy static files to work dir">
-    <mkdir  dir="${dist1.home}"/>
-    <mkdir  dir="${work1.home}/WEB-INF/classes"/>
-	<mkdir  dir="${dist2.home}"/>
-    <mkdir  dir="${work2.home}/WEB-INF/classes"/>
+    <mkdir  dir="${dist.home}"/>
+    <mkdir  dir="${work.home}/WEB-INF/classes"/>
     <!-- Copy static HTML and JSP files to work dir -->
-    <copy todir="${work1.home}">
-      <fileset dir="${web1.home}"/>
-	<copy todir="${work2.home}">
-      <fileset dir="${web2.home}"/>
+    <copy todir="${work.home}">
+      <fileset dir="${web.home}"/>
     </copy>
   </target>
 
   <target name="compile" depends="prepare"
           description="Compile Java sources and copy to WEB-INF/classes dir">
-    <javac srcdir="${src1.home}"
-          destdir="${work1.home}/WEB-INF/classes">
-	<javac srcdir="${src2.home}"
-          destdir="${work2.home}/WEB-INF/classes">
+    <javac srcdir="${src.home}"
+          destdir="${work.home}/WEB-INF/classes">
         <classpath refid="compile.classpath"/>
     </javac>
   </target>
 
   <target name="dist" depends="compile"
           description="Create WAR file for binary distribution">
-    <jar jarfile="${dist1.home}/${app1.name}.war"
-         basedir="${work1.home}"/>
-	<jar jarfile="${dist2.home}/${app2.name}.war"
-         basedir="${work2.home}"/>
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${work.home}"/>
   </target>
 
   <target name="test" depends="dist">
   </target>
 </project>
+<project name="ec2ImageProcessing" default="run" basedir="./ec2ImageProcessing">
+  <path id="aws.java.sdk.classpath">
+    <fileset dir="./ec2ImageProcessing/WebContent/WEB-INF/lib" includes="**/*.jar"/>
+    <pathelement location="lib"/>
+    <pathelement location="."/>
+  </path>
+
+  <!-- Define the properties used by the build -->
+  <property name="app.name"      value="ec2ImageProcessing"/>
+  <property name="work.home"    value="${basedir}/work"/>
+  <property name="dist.home"     value="${basedir}/dist"/>
+  <property name="src.home"      value="${basedir}/src"/>
+  <property name="web.home"      value="${basedir}"/>
+
+  <target name="all" depends="clean,compile,dist"
+          description="Clean work dirs, then compile and create a WAR"/>
+
+  <target name="clean"
+          description="Delete old work and dist directories">
+    <delete dir="${work.home}"/>
+    <delete dir="${dist.home}"/>
+  </target>
+
+  <target name="prepare" depends="clean"
+          description="Create working dirs and copy static files to work dir">
+    <mkdir  dir="${dist.home}"/>
+    <mkdir  dir="${work.home}/WEB-INF/classes"/>
+    <!-- Copy static HTML and JSP files to work dir -->
+    <copy todir="${work.home}">
+      <fileset dir="${web.home}"/>
+    </copy>
+  </target>
+
+  <target name="compile" depends="prepare"
+          description="Compile Java sources and copy to WEB-INF/classes dir">
+    <javac srcdir="${src.home}"
+          destdir="${work.home}/WEB-INF/classes">
+        <classpath refid="compile.classpath"/>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile"
+          description="Create WAR file for binary distribution">
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${work.home}"/>
+  </target>
+
+  <target name="test" depends="dist">
+  </target>
+</project>
+</projects>
