@@ -4,7 +4,33 @@
     <pathelement location="lib"/>
     <pathelement location="."/>
   </path>
+  
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
+   <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
 
+  <target name="compile" depends="init"
+        description="compile the source">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+  <target name="dist" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+
+<!---
   <target name="build">
   <javac debug="true"
     includeantruntime="false"
@@ -15,5 +41,5 @@
 
   <target name="test" depends="build">
     <java classname="upload.jsp" classpathref="aws.java.sdk.classpath" fork="true"/>
-  </target>
+  </target>--->
 </project>
