@@ -50,6 +50,5 @@
   </target>
 
   <target name="test" depends="dist">
-    <java classname="upload.jsp" classpathref="aws.java.sdk.classpath" fork="true"/>
   </target>
 </project>
