@@ -48,16 +48,8 @@
     <jar jarfile="${dist.home}/${app.name}.war"
          basedir="${work.home}"/>
   </target>
-  
-  <target name="build" depends="compile">
-  <javac debug="true"
-    includeantruntime="false"
-    srcdir="."
-    destdir="."
-    classpathref="aws.java.sdk.classpath"/>
-  </target>
 
-  <target name="test" depends="build">
+  <target name="test" depends="dist">
     <java classname="upload.jsp" classpathref="aws.java.sdk.classpath" fork="true"/>
   </target>
 </project>
